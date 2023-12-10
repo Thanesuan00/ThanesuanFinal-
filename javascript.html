@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Catering</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="co.css">
+<style>
+body {font-family:"Times New Roman", serif}
+h1,h2,h3,h4,h5,h6 {font-family:serif; letter-spacing:5px}
+</style>
+<body bgcolor="DC8686">
+
+<!-- Navigation (Sits on top) -->
+<div class="w3-top w3-bar w3-white w3-padding w3-card w3-wide">
+<a href="#home" class="w3-bar-item w3-button">Thanesuan Jaikarjang</a>
+
+<!-- Right-sided navbar links. Hide them on small screens -->
+<div class="w3-right w3-hide-small">
+<a href="index.html" class="w3-bar-item w3-button">Porfiles</a>
+<a href="" class="w3-bar-item w3-button">Javascript</a>
+<a href="chart.html" class="w3-bar-item w3-button">Form</a>
+<a href="api.html" class="w3-bar-item w3-button">API</a>
+
+</div>
+</div>
+
+<!-- Javascript --> 
+<div id="Javascript" class="w3-padding-top-64">
+    <div class="w3-row">
+        <center>
+            <table>
+                <td class="t">
+                    <center>
+        <center>
+            <h1>Javascript</h1>
+        </center>
+        <div class="box">
+            <h2>หาความยาวเส่นทแยงมุมของสี่เหลี่ยงผืนผ้า</h2>
+            <input id="base" type="text" placeholder="ป้อนความยาวของฐาน" />
+            <input id="height" type="text" placeholder="ป้อนความสูง" />
+            <h4>ผลลัพธ์:<span id="show"></span></h4>
+            <button onclick="calculateHypotenuse(document.getElementById('base').value, document.getElementById('height').value)">
+          คำนวน
+        </button>
+        </div>
+
+        <div class="box">
+            <h2>หาความยาวเส่นรอบวง</h2>
+            <input id="input" type="text" placeholder="รัศมี" />
+            <button onclick="calculateAndDisplayCircumference()">คำนวน</button>
+            <h4>ความยาวเส้นรอบวงกลม:<span id="result"></span></h4>
+        </div>
+
+
+        <div class="box">
+            <h2>หาค่าอุภูมิ</h2>
+            <h4><span id="show1"></span></h4>
+            <button onclick="fahrenheitToCelsius()">กดปุ่ม</button>
+        </div>
+
+        <div class="box">
+            <h2>หาค่าวันต่อนาที</h2>
+            <input type="text" id="daysInput" />
+            <h4><span id="show2"></span></h4>
+            <button onclick="dayToSeconds()">คำนวน</button>
+        </div>
+        <div class="box">
+            <h2>A-Z</h2>
+            <h4><span id="show3"></span></h4>
+        </div>
+
+
+    </header>
+    <script>
+        function printAlphabets() {
+            for (let charCode = 65; charCode <= 90; charCode++) {
+                const alphabet = String.fromCharCode(charCode);
+                setTimeout(() => {
+                    console.log(alphabet);
+                }, (charCode - 65) * 1000);
+            }
+        }
+
+        function printAlphabets() {
+            let result = '';
+            for (let charCode = 65; charCode <= 90; charCode++) {
+                const alphabet = String.fromCharCode(charCode);
+                setTimeout(() => {
+                    result = alphabet;
+                    document.getElementById('show3').innerText = result;
+                }, (charCode - 65) * 1000);
+            }
+        }
+
+        printAlphabets();
+
+        function dayToSeconds() {
+            let inputDays = document.getElementById("daysInput").value;
+            if (!isNaN(inputDays)) {
+                let seconds = inputDays * 86400;
+                document.getElementById(
+                    "show2"
+                ).innerText = `จำนวนวัน ${inputDays} วัน: ${seconds} นาที`;
+            } else {
+                alert("Please enter a valid number of days.");
+            }
+        }
+
+        // หาความยาวเส่นรอบวง
+        function calculateCircleCircumference(radius) {
+            return 2 * Math.PI * radius;
+        }
+
+        function calculateAndDisplayCircumference() {
+            let inputElement = document.getElementById("input");
+            let resultElement = document.getElementById("result");
+
+            let radius = parseFloat(inputElement.value);
+
+            if (!isNaN(radius)) {
+                let circumference = calculateCircleCircumference(radius);
+                resultElement.textContent = circumference.toFixed(2);
+            } else {
+                resultElement.textContent = "กรุณากรอกค่าที่ถูกต้อง";
+            }
+        }
+
+        function fahrenheitToCelsius() {
+            let inputFahrenheit = prompt("Enter temperature in Fahrenheit:");
+            let celsiusValue = (parseFloat(inputFahrenheit) - 32) * (5 / 9);
+            document.getElementById(
+                "show1"
+            ).innerText = `Fahrenheit: ${inputFahrenheit}°F, Celsius: ${celsiusValue.toFixed(
+          2
+        )}°C`;
+        }
+
+        // หาความยาวเส่นทแยงมุมของสี่เหลี่ยงผืนผ้า
+        function calculateHypotenuse(base, height) {
+            let result = Math.sqrt(base ** 2 + height ** 2);
+            document.getElementById("show").innerHTML = result.toFixed(3);
+        }
+    </script>  
+    </table>
+
+<!--chart-->
+<table>
+    <td class="t">
+        <center>
+<section class="sec-4">
+    <h1 class="animate">Chart</h1>
+    <p class="animate"></p>
+    <h6>&nbsp;</h6>
+    <div class="animate">
+
+      <div class="containerlab">
+        <label>Chart <strong>Default</strong></label>
+
+        <canvas id="myChart" width="360px"></canvas>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          const ctx = document.getElementById('myChart');
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+              datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        </script>
+      </div>
+
+      <div class="containerlab">
+        <label> <strong></strong></label>
+
+        <canvas id="myChart2" width="360px"></canvas>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+ // Use an asynchronous function to fetch data
+ async function fetchData() {
+      try {
+        const response = await fetch('data.json');
+        const data = await response.json();
+
+        // Chart configuration
+        const ctx2 = document.getElementById('myChart2');
+        new Chart(ctx2, {
+          type: 'bar',
+          data: {
+            labels: data.map(item => item.label),
+            datasets: [{
+              label: '# of Votes',
+              data: data.map(item => item.value),
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    // Call the fetchData function
+    fetchData();
+        </script>
+      </div>
+    </div>
+
+  </section>
+  
+
+<!--chart j-->
+            <canvas id="Chart" style="width:100%;max-width:600px"></canvas>
+
+            <script>
+            const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+            const yValues = [55, 49, 44, 24, 15];
+            const barColors = [
+              "#b91d47",
+              "#00aba9",
+              "#2b5797",
+              "#e8c3b9",
+              "#1e7145"
+            ];
+            
+            new Chart("Chart", {
+              type: "pie",
+              data: {
+                labels: xValues,
+                datasets: [{
+                  backgroundColor: barColors,
+                  data: yValues
+                }]
+              },
+              options: {
+                title: {
+                  display: true,
+                  text: "World Wide Wine Production 2018"
+                }
+              }
+            });
+            </script>
+            
+
+        </table>
+
+
+</div>
+
+</body>
+</html> 

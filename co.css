@@ -1,0 +1,19 @@
+.h{
+    font-size: 50px;
+    color: rgb(47, 58, 88);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+.i{
+    width: 200px;
+    height: 530px;
+
+}
+.t{
+    border: 2px solid #ccc; /* สีและขนาดขอบ */
+  padding: 10px; /* ระยะห่างขอบของตัวหนังสือ */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* เงา */
+  width: 800px;
+  height: 25px;
+  right: center;
+}
